@@ -34,12 +34,8 @@
   --glass: rgba(255, 255, 255, .07);
   --glass-line: rgba(255, 255, 255, .2);
 
-  --r-s: 12px; --r-m: 18px; --r-l: 26px; --r-xl: 40px; --r-pill: 999px;
+  --r-s: 12px; --r-m: 18px; --r-l: 26px; --r-xl: 40px;
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --ease-btn: cubic-bezier(.22, .61, .36, 1);
-  --orange-btn: #B4430F;        /* 5.6:1 with white text */
-  --orange-btn-hover: #96380B;
-  --on-orange: #FFFFFF;
   --shadow-s: 0 10px 26px -18px rgba(16, 24, 40, .4);
   --shadow-m: 0 24px 60px -34px rgba(16, 24, 40, .5);
 }
@@ -283,39 +279,39 @@ h1 .big {
 .stars .num { margin-top: .35rem; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 700; letter-spacing: -.03em; color: var(--navy); line-height: 1; }
 .stars .cap { font-size: .74rem; color: var(--ink-3); }
 @media (max-width: 1120px) { .chip-quote, .stars { display: none; } }
-.cta-strip {
-  position: absolute; z-index: 5; left: 50%; bottom: 26px;
-  translate: -50% 0;
-  display: flex; gap: 4px; width: max-content; margin: 0;
-  padding: 6px; border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, .22);
-  border: 1px solid rgba(255, 255, 255, .5);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  white-space: nowrap;
-}
-.cta-strip .pill { padding: 13px 26px; font-size: 15px; font-weight: 500; gap: 10px; }
-.cta-strip .pill svg { width: 18px; height: 18px; }
-.cta-strip .pill {
-  transition:
-    transform .25s var(--ease-btn),
-    background-color .25s var(--ease-btn),
-    color .25s var(--ease-btn),
-    box-shadow .25s var(--ease-btn);
-}
-.cta-strip .pill:hover { transform: translateY(-2px); }
-.cta-strip .pill-primary {
-  background: var(--orange-btn); color: var(--on-orange);
-  box-shadow: 0 12px 26px -14px rgba(120, 52, 14, .55);
-}
-.cta-strip .pill-primary:hover { background: var(--orange-btn-hover); }
-.cta-strip .pill-ghost { background: transparent; color: #fff; }
-.cta-strip .pill-ghost:hover { background: rgba(255, 255, 255, .16); }
-
 @media (max-width: 720px) {
-  .cta-strip .pill { padding: 12px 20px; font-size: 14px; }
+  .cta-strip { bottom: clamp(20px, 5vw, 34px); padding: .3rem; }
+  .cta-strip .pill { padding: .7rem 1rem; font-size: .85rem; }
+  .hero { padding-bottom: 0; }
 }
 
+.cta-strip {
+  position: absolute; z-index: 5; left: 50%; translate: -50% 0; bottom: clamp(28px, 4vw, 46px);
+  display: flex; gap: .3rem; width: max-content; margin: 0; padding: .38rem; border-radius: 999px;
+  /* a real material: translucent fill over a live backdrop, bright top edge where
+     light catches it, and a shadow deep enough to lift it off the portrait */
+  /* the fill warms to the right so white type keeps contrast on the glass */
+  background: linear-gradient(96deg, rgba(255,255,255,.30) 34%, rgba(255,255,255,.18) 66%, rgba(46,18,2,.32) 100%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) brightness(1.03);
+  backdrop-filter: blur(30px) saturate(190%) brightness(1.03);
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-top-color: rgba(255, 255, 255, .8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .7),
+    inset 0 -10px 18px -14px rgba(40, 10, 0, .45),
+    0 22px 46px -18px rgba(60, 20, 0, .5),
+    0 2px 6px rgba(60, 20, 0, .16);
+}
+/* specular sweep: light travelling across the material, not a flat tint */
+.cta-strip::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(112deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,.12) 26%,
+                    rgba(255,255,255,0) 46%, rgba(255,255,255,.14) 78%, rgba(255,255,255,.05) 100%);
+  mix-blend-mode: screen;
+}
+.cta-strip > * { position: relative; z-index: 1; }
 .hero-lede {
   position: relative; z-index: 4; margin: 1rem auto 0; max-width: 54ch;
   text-align: center; color: var(--ink-2); font-size: .97rem;
@@ -334,6 +330,13 @@ h1 .big {
 .pill-primary:hover { background: var(--accent-deep); }
 .pill-ghost { background: #fff; color: var(--ink); border-color: rgba(16,24,40,.24); box-shadow: 0 6px 16px -12px rgba(16,24,40,.5); }
 .pill-ghost:hover { background: #fff; }
+/* inside the hero's glass strip the second action is plain type, as in the reference */
+.cta-strip .pill-ghost {
+  background: transparent; border-color: transparent; box-shadow: none;
+  color: #fff; font-weight: 600; letter-spacing: .01em;
+  text-shadow: 0 1px 3px rgba(38, 12, 0, .6), 0 2px 14px rgba(38, 12, 0, .5);
+}
+.cta-strip .pill-ghost:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); }
 .pill svg { transition: transform 200ms var(--ease); }
 .pill-primary:hover svg, .pill-ghost:hover svg { transform: translate(2px, -2px); }
 
@@ -725,22 +728,31 @@ h1 .big {
 [data-reveal] { opacity: 0; translate: 0 16px; transition: opacity 620ms var(--ease), translate 680ms var(--ease); }
 [data-reveal].is-in { opacity: 1; translate: 0 0; }
 
+/* small screens put the strip straight over the orange arch, so the material
+   carries more of its own tint to keep white type legible */
+@media (max-width: 720px) {
+  .cta-strip {
+    background: linear-gradient(96deg, rgba(255,255,255,.34) 26%, rgba(52,20,4,.34) 72%, rgba(30,12,0,.46) 100%);
+  }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .cta-strip {
     background: rgba(255, 255, 255, .94);
     -webkit-backdrop-filter: none; backdrop-filter: none;
-    border-color: rgba(16, 24, 40, .14);
+    border-color: rgba(16, 24, 40, .14); border-top-color: rgba(16, 24, 40, .14);
+    box-shadow: 0 12px 30px -20px rgba(16, 24, 40, .5);
   }
-  .cta-strip .pill-ghost { color: var(--navy); }
-  .cta-strip .pill-ghost:hover { background: rgba(16, 24, 40, .06); }
+  .cta-strip .pill-ghost { color: var(--navy); text-shadow: none; }
+  .cta-strip .pill-ghost:hover { background: rgba(16, 24, 40, .06); border-color: transparent; }
 }
 @media (prefers-contrast: more) {
   .cta-strip {
     background: #fff;
     -webkit-backdrop-filter: none; backdrop-filter: none;
-    border: 1.5px solid var(--navy);
+    border: 1.5px solid var(--navy); border-top-color: var(--navy);
   }
-  .cta-strip .pill-ghost { color: var(--navy); }
+  .cta-strip .pill-ghost { color: var(--navy); text-shadow: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
