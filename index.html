@@ -186,12 +186,11 @@ h1 .big {
   transition: transform 520ms var(--ease), filter 420ms var(--ease);
 }
 @media (hover: hover) and (pointer: fine) {
-  #heroPhoto:hover img,
+  /* hero portrait stays put: the lift/scrim on hover read as a wobble */
   #whyPhoto:hover img {
     transform: translateY(-6px) scale(1.025);
     filter: drop-shadow(0 26px 34px rgba(52, 16, 0, .52)) drop-shadow(0 3px 5px rgba(52, 16, 0, .28));
   }
-  #heroPhoto:hover::before,
   #whyPhoto:hover::before { opacity: 1; transform: scale(1.04); }
 }
 
