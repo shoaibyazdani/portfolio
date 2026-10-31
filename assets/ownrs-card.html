@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 825px; overflow: hidden; }
+  body {
+    position: relative; font-family: system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    background:
+      radial-gradient(58% 72% at 80% 48%, rgba(27, 95, 168, .06) 0%, rgba(27, 95, 168, 0) 64%),
+      #ffffff;
+  }
+  .copy { position: absolute; left: 74px; top: 86px; width: 452px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase;
+    color: #1b5fa8; margin-bottom: 18px;
+  }
+  .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: #1b5fa8; display: block; }
+  h1 { font-size: 44px; line-height: 1.03; letter-spacing: -.035em; color: #101828; font-weight: 680; }
+  h1 span { display: block; color: #7b8492; }
+  .facts { margin-top: 22px; display: flex; gap: 22px; }
+  .fact b { display: block; font-size: 19px; letter-spacing: -.02em; color: #101828; font-weight: 700; }
+  .fact s { display: block; margin-top: 3px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: #8a92a0; text-decoration: none; }
+  .shot { position: absolute; right: 96px; top: 30px; height: 764px; }
+  .shot img {
+    height: 100%; display: block;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 88%, transparent 100%);
+    filter: drop-shadow(0 22px 40px rgba(16,24,40,.18));
+  }
+</style></head>
+<body>
+  <div class="copy">
+    <div class="eyebrow"><i></i>Ownrs · owner &amp; tenant app</div>
+    <h1>Own the property.<span>Not the paperwork.</span></h1>
+    <div class="facts">
+      <div class="fact"><b>AED 170,000</b><s>Rent roll</s></div>
+      <div class="fact"><b>4 units</b><s>2 rented</s></div>
+      <div class="fact"><b>42,500</b><s>Overdue chased</s></div>
+    </div>
+  </div>
+  <div class="shot"><img src="ownrs-phone-crop.png" alt="Ownrs owner app"></div>
+</body></html>

@@ -1,0 +1,13 @@
+.DS_Store
+# QA screenshots / hover captures (kept on disk, not in the repo)
+shot-*.png
+hover-*.png
+# intermediates from the card-art builds
+assets/ownrs-phone.png
+assets/ownrs-card.png
+# unused alternates and retired mockups (kept locally)
+assets/project-*.png
+assets/live-aspire-app.png
+assets/portrait-preclean.png
+assets/portrait-navy.png
+assets/source-*.png
