@@ -74,31 +74,14 @@ h2.sec .o { color: var(--accent); }
 
 /* ── Doodle layer: revealed on hover, hand-drawn violet line art ── */
 .doodles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+/* static hand-drawn decoration: always visible, no hover reveal */
 .doodle-item {
   position: absolute; left: var(--x); top: var(--y);
   width: var(--w); color: #7c3aed;
-  opacity: 0; visibility: hidden; transform: translateY(10px) scale(.7) rotate(var(--rot, 0deg));
-  transition: opacity 380ms var(--ease) var(--d, 0ms),
-              transform 560ms var(--ease) var(--d, 0ms),
-              visibility 0s linear var(--d, 0ms);
+  opacity: .92; visibility: visible;
+  transform: rotate(var(--rot, 0deg));
 }
 .doodle-item svg { display: block; width: 100%; height: auto; overflow: visible; }
-@media (hover: hover) and (pointer: fine) {
-  .stage:hover .doodle-item,
-  .stage:focus-within .doodle-item {
-    opacity: .92; visibility: visible;
-    transform: translateY(0) scale(1) rotate(var(--rot, 0deg));
-  }
-  .stage:hover .doodle-item svg { animation: doodle-bob 5.5s ease-in-out infinite; animation-delay: var(--d, 0ms); }
-}
-@keyframes doodle-bob {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -5px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .doodle-item { transform: none; }
-  .stage:hover .doodle-item svg { animation: none; }
-}
 
 /* ── Nav: dark pill ──────────────────────────────────────── */
 .nav-shell { position: fixed; inset: 14px 0 auto; z-index: 60; padding-inline: 1rem; }
